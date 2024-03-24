@@ -17,6 +17,8 @@ const Chat = () => {
     const [searchValue, setSearchValue] = useState("");
     const [goBottom, setGoBottom] = useState(false);
     const [emoji, setEmoji] = useState(false);
+    const [isPlayingFromSocket, setIsPlayingFromSocket] = useState(false);
+    const [isPausedFromSocket, setIsPausedFromSocket] = useState(false);
     const navigate = useNavigate();
     const videoRef = useRef(null);
     const chatAreaRef = useRef(null);
@@ -55,6 +57,7 @@ const Chat = () => {
     useEffect(() => {
         socket.on('videoPlay', ({ currentTime }) => {
             videoRef.current.currentTime = currentTime;
+            setIsPlayingFromSocket(true);
             videoRef.current.play();
         });
     }, []);
@@ -62,6 +65,7 @@ const Chat = () => {
     useEffect(() => {
         socket.on('videoPause', ({ currentTime }) => {
             videoRef.current.currentTime = currentTime;
+            setIsPausedFromSocket(true);
             videoRef.current.pause();
         });
     }, []);
@@ -125,13 +129,19 @@ const Chat = () => {
     };
 
     const handleVideoPlay = () => {
-        const currentTime = videoRef.current.currentTime;
-        socket.emit('videoPlay', { currentTime, params });
+        if (!isPlayingFromSocket) {
+            const currentTime = videoRef.current.currentTime;
+            socket.emit('videoPlay', { currentTime, params });
+        }
+        setIsPlayingFromSocket(false);
     };
     
     const handleVideoPause = () => {
-        const currentTime = videoRef.current.currentTime;
-        socket.emit('videoPause', { currentTime, params });
+        if (!isPausedFromSocket) {
+            const currentTime = videoRef.current.currentTime;
+            socket.emit('videoPause', { currentTime, params });
+        }
+        setIsPausedFromSocket(false);
     };
 
     const handleSearch = (value) => {
