@@ -142,6 +142,7 @@ const Chat = () => {
 
         socket.emit('sendMessage', { message, params });
         setMessage("");
+        setEmoji(false);
     };
 
     const handleVideoPlay = () => {
