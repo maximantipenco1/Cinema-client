@@ -54,7 +54,7 @@ body {
 
 .movie {
     width: calc(100% - 35%);
-    height: calc(100vh - 15vh);
+    min-height: 85vh;
     float: left;
     position: relative;
     margin-top: 20px;
@@ -63,7 +63,7 @@ body {
 
 .chat {
     width: calc(100% - 70%);
-    height: calc(100vh - 15vh);
+    min-height: 85vh;
     float: right;
     margin-top: 20px;
     margin-right: 25px;
@@ -94,12 +94,12 @@ body {
   }
 
 .chat-area {
-    height: calc(100vh - 33vh);
+    height: 64vh;
     overflow-y: auto;
 }
 
 .input {
-    margin-top: 15px;
+    margin-top: calc(100vh - 96vh);
     width: 100%;
 }
 
@@ -112,4 +112,14 @@ body {
     bottom: 100px;
     left: 50%;
     transform: translateX(-50%);
+}
+
+.emojies {
+    zoom: 1.5;
+}
+
+.emoji-picker {
+    position: absolute;
+    right: 4%;
+    bottom: 9vh;
 }
