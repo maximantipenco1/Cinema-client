@@ -69,6 +69,13 @@ body {
     margin-right: 25px;
 }
 
+.input {
+    width: 90%;
+    position: absolute;
+    bottom: 25px;
+    left: 5%;
+}
+
 @media screen and (max-width: 1200px) {
     .movie{
         width: 100%;
@@ -94,13 +101,8 @@ body {
   }
 
 .chat-area {
-    height: 64vh;
+    height: 66vh;
     overflow-y: auto;
-}
-
-.input {
-    margin-top: calc(100vh - 96vh);
-    width: 100%;
 }
 
 .send_button {
