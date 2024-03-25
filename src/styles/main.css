@@ -10,43 +10,6 @@ body {
     background-color: rgb(245, 245, 245);
 }
 
-.chat {
-    width: 32vw;
-    height: 87vh;
-    position: fixed;
-    margin-left: 65vw;
-    margin-top: 2vh;
-}
-
-.movie {
-    width: 61vw;
-    height: 87vh;
-    position: fixed;
-    margin-left: 2vw;
-    margin-top: 2vh;
-}
-
-.input {
-    width: 100%;
-    margin-top: 10%;
-    position: relative;
-}
-
-.send_button {
-    height: 5vh;
-}
-
-.emojies {
-    zoom: 1.5;
-}
-
-.chat-area {
-    min-height: 65vh;
-    max-width: 32vw;
-    max-height: 65vh;
-    overflow-y: auto;
-}
-
 .chat-area::-webkit-scrollbar {
     width: 0;
     height: 0;
@@ -80,42 +43,73 @@ body {
 }
 
 .search {
-    width: 61vw;
-    margin-left: 2vw;
-    margin-top: 1vh;
+    margin-left: 25px;
+    width: calc(100% - 60%);
 }
 
 .leave-chat {
-    width: 5vw;
-    margin-left: 29vw;
-    margin-top: 1vh;
+    float: right;
+    margin-right: 25px;
 }
 
-.user-exists {
-    margin-left: 23%;
-    color: red;
+.movie {
+    width: calc(100% - 35%);
+    height: calc(100vh - 15vh);
+    float: left;
+    position: relative;
+    margin-top: 20px;
+    margin-left: 25px;
+}
+
+.chat {
+    width: calc(100% - 70%);
+    height: calc(100vh - 15vh);
+    float: right;
+    margin-top: 20px;
+    margin-right: 25px;
+}
+
+@media screen and (max-width: 1200px) {
+    .movie{
+        width: 100%;
+        height: auto;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .chat {
+        width: 100%;
+        height: auto;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .search {
+        margin-left: 0;
+    }
+
+    .leave-chat {
+        margin-right: 0;
+    }
+  }
+
+.chat-area {
+    height: calc(100vh - 33vh);
+    overflow-y: auto;
+}
+
+.input {
+    margin-top: 15px;
+    width: 100%;
+}
+
+.send_button {
+    height: 45px;
 }
 
 .go-bottom {
+    position: absolute;
+    bottom: 100px;
     left: 50%;
-    top: 73vh;
-    position: absolute;
-}
-
-.emoji-picker {
-    position: absolute;
-    bottom: 110%;
-    right: 0;
-}
-
-.custom-dragger {
-    width: 18%;
-    margin: 0 auto;
-}
-
-.centered {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    transform: translateX(-50%);
 }
