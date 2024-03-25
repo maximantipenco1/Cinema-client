@@ -19,6 +19,7 @@ const Chat = () => {
     const [emoji, setEmoji] = useState(false);
     const [isPlayingFromSocket, setIsPlayingFromSocket] = useState(false);
     const [isPausedFromSocket, setIsPausedFromSocket] = useState(false);
+    const [prevScrollHeight, setPrevScrollHeight] = useState(0);
     const navigate = useNavigate();
     const videoRef = useRef(null);
     const chatAreaRef = useRef(null);
@@ -32,7 +33,16 @@ const Chat = () => {
     );
 
     useEffect(() => {
-        const isScrolledToBottom = chatAreaRef.current.clientHeight + chatAreaRef.current.scrollTop >= chatAreaRef.current.scrollHeight - 100;
+        const handleWheel = () => {
+            const isScrolledToBottom = chatAreaRef.current.clientHeight + chatAreaRef.current.scrollTop >= prevScrollHeight - 5;
+    
+            if (isScrolledToBottom) {
+                setGoBottom(false);
+            }
+        };
+
+        setPrevScrollHeight(chatAreaRef.current.scrollHeight);
+        const isScrolledToBottom = chatAreaRef.current.clientHeight + chatAreaRef.current.scrollTop >= prevScrollHeight - 5;
 
         if (isScrolledToBottom) {
             chatAreaRef.current.scrollTop = chatAreaRef.current.scrollHeight;
@@ -40,6 +50,12 @@ const Chat = () => {
         } else {
             setGoBottom(true);
         }
+
+        chatAreaRef.current.addEventListener('wheel', handleWheel);
+
+        return () => {
+            chatAreaRef.current.removeEventListener('wheel', handleWheel);
+        };
     }, [state]);
 
     useEffect(() => {
