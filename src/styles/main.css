@@ -98,6 +98,11 @@ body {
     .leave-chat {
         margin-right: 0;
     }
+
+    .input {
+        width: 95%;
+        left: 2.5%;
+    }
   }
 
 .chat-area {
